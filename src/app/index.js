@@ -1,13 +1,11 @@
 import React from 'react';
 import * as eva from '@eva-design/eva';
-import { View } from 'react-native';
 import {ApplicationProvider, IconRegistry, Layout} from '@ui-kitten/components';
 import {EvaIconsPack} from '@ui-kitten/eva-icons';
 import {default as theme} from './helpers/theme.json';
 
 import Amplify from 'aws-amplify';
 import config from '../aws-exports';
-import Login from './screens/login';
 import {AppNavigator} from './helpers/navigation';
 
 Amplify.configure({
