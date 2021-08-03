@@ -28,7 +28,7 @@ export const PostsScreen = ({navigation}) => {
       />
       <Divider />
       <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text category="h1">DETAILS</Text>
+        <Text category="h1">Posts</Text>
       </Layout>
     </Layout>
   );

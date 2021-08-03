@@ -5,6 +5,7 @@ import {HomeScreen} from '../screens/home';
 import {PostsScreen} from '../screens/posts';
 import Login from '../screens/login';
 import Signup from '../screens/signup';
+import Profile from '../screens/profile';
 
 const {Navigator, Screen} = createStackNavigator();
 
@@ -14,6 +15,7 @@ const HomeNavigator = () => (
     <Screen name="Signup" component={Signup} />
     <Screen name="Home" component={HomeScreen} />
     <Screen name="Posts" component={PostsScreen} />
+    <Screen name="Profile" component={Profile} />
   </Navigator>
 );
 

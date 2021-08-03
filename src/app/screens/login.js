@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View} from 'react-native';
 import {Layout, Input, Text, Button} from '@ui-kitten/components';
 import * as UA from '../../auth/userLogin';
@@ -8,12 +8,38 @@ const Login = ({navigation}) => {
   const [usernameValue, setUsernameValue] = React.useState('');
   const [passwordValue, setPasswordValue] = React.useState('');
 
+  useEffect(() => {
+    UA.currentAuthenticatedUser()
+      .then(response => {
+        console.log(response.username);
+        if (response.username.length > 1) {
+          navigateHome();
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  });
+
   const navigateSignUp = () => {
     navigation.navigate('Signup');
   };
 
+  const navigateHome = () => {
+    navigation.navigate('Home');
+  };
+
   const login = (username, password) => {
-    UA.signIn(username, password);
+    UA.signIn(username, password)
+      .then(response => {
+        if (response.username.length > 1) {
+          console.log('This should go Home');
+          navigateHome();
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
     // will return user info and dispatch to redux
   };
 

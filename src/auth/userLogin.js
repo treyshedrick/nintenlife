@@ -28,7 +28,17 @@ export async function signIn(username, password) {
   try {
     const user = await Auth.signIn(username, password);
     console.log(user);
+    return user;
   } catch (error) {
     console.log('error signing in', error);
+  }
+}
+
+export async function currentAuthenticatedUser() {
+  try {
+    const response = await Auth.currentAuthenticatedUser();
+    return response;
+  } catch (error) {
+    console.log('Error!', error);
   }
 }

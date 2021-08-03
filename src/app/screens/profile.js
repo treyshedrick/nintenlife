@@ -1,13 +1,14 @@
 import React from 'react';
 import {Button, Divider, Layout, TopNavigation} from '@ui-kitten/components';
+import * as UA from '../../auth/userLogin';
 
-export const HomeScreen = ({navigation}) => {
-  const navigateDetails = () => {
-    navigation.navigate('Posts');
+const Profile = ({navigation}) => {
+  const navigateLogin = () => {
+    navigation.navigate('Login');
   };
 
-  const navigateProfile = () => {
-    navigation.navigate('Profile');
+  const signOut = () => {
+    UA.signOut().then(() => navigateLogin());
   };
 
   return (
@@ -15,9 +16,10 @@ export const HomeScreen = ({navigation}) => {
       <TopNavigation title="MyApp" alignment="center" />
       <Divider />
       <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Button onPress={navigateDetails}>OPEN DETAILS</Button>
-        <Button onPress={navigateProfile}>Open Profile</Button>
+        <Button onPress={() => signOut()}>Sign Out</Button>
       </Layout>
     </Layout>
   );
 };
+
+export default Profile;
