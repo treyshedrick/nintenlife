@@ -1,16 +1,36 @@
 import * as U from '../constants/user';
-import * as UA from '../../../auth/userLogin';
-import ReduxThunk from 'redux-thunk';
+import {Auth} from 'aws-amplify';
 
 export const login = (username, password) => {
   return dispatch =>
-    UA.signIn(username, password)
-      .then(response => {
-        console.log(response);
-        dispatch({type: U.USER_LOGIN_SUCCESS, user: response.username});
+    Auth.signIn(username, password)
+      .then(user => {
+        console.log('Successful login dispatch');
+        dispatch({
+          type: U.USER_LOGIN_SUCCESS,
+          username: user.username,
+          email: user.attributes.email,
+        });
+        return user;
       })
       .catch(err => {
-        console.log(err);
+        console.log('Error: ', err);
         dispatch({type: U.USER_LOGIN_FAIL, error: err});
+      });
+};
+
+export const signOut = () => {
+  return dispatch =>
+    Auth.signOut()
+      .then(() => {
+        console.log('Successful signout dispatch');
+        dispatch({
+          type: U.USER_SIGNOUT_SUCCESS,
+        });
+        return;
+      })
+      .catch(err => {
+        console.log('Error: ', err);
+        dispatch({type: U.USER_SIGNOUT_FAIL, error: err});
       });
 };

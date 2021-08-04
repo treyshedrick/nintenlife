@@ -3,6 +3,7 @@ import * as U from '../constants/user';
 const initialState = {
   userState: null,
   username: '',
+  email: '',
 };
 
 const user = (state = initialState, action) => {
@@ -11,6 +12,12 @@ const user = (state = initialState, action) => {
       return {
         ...state,
         username: action.username,
+        email: action.email,
+        userState: action.type,
+      };
+    case U.USER_SIGNOUT_SUCCESS:
+      return {
+        ...initialState,
         userState: action.type,
       };
     default:

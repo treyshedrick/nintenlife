@@ -2,11 +2,14 @@ import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
 import {Layout, Input, Text, Button} from '@ui-kitten/components';
 import * as UA from '../../auth/userLogin';
+import * as UserActions from '../redux/actions/user';
 import styles from './styles/form';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import {TouchableWithoutFeedback, Keyboard} from 'react-native';
+import {USER_SIGNOUT_SUCCESS} from '../redux/constants/user';
 
-const Login = ({navigation, user}) => {
+const Login = ({navigation, user, actions}) => {
   const [usernameValue, setUsernameValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -37,24 +40,24 @@ const Login = ({navigation, user}) => {
   };
 
   const login = (username, password) => {
-    UA.signIn(username, password)
+    actions
+      .login(username, password)
       .then(response => {
         if (response?.username.length > 1) {
-          console.log('This should go Home');
+          setUsernameValue('');
+          setPasswordValue('');
           navigateHome();
         }
       })
       .catch(err => {
         console.log(err);
       });
-    // will return user info and dispatch to redux
   };
-
-  console.log(user);
 
   return (
     <>
-      {isLoaded === true && isLoggedIn === false ? (
+      {(isLoaded === true && isLoggedIn === false) ||
+      user.userState === USER_SIGNOUT_SUCCESS ? (
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
           <Layout style={styles.layout}>
             <Text category="h1" style={styles.center}>
@@ -95,4 +98,9 @@ const mapStateToProps = state => ({
   user: state.user,
 });
 
-export default connect(mapStateToProps)(Login);
+const ActionCreators = Object.assign({}, UserActions);
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(ActionCreators, dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
