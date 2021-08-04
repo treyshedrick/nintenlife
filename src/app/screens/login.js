@@ -3,9 +3,10 @@ import {View} from 'react-native';
 import {Layout, Input, Text, Button} from '@ui-kitten/components';
 import * as UA from '../../auth/userLogin';
 import styles from './styles/form';
+import {connect} from 'react-redux';
 import {TouchableWithoutFeedback, Keyboard} from 'react-native';
 
-const Login = ({navigation}) => {
+const Login = ({navigation, user}) => {
   const [usernameValue, setUsernameValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -49,6 +50,8 @@ const Login = ({navigation}) => {
     // will return user info and dispatch to redux
   };
 
+  console.log(user);
+
   return (
     <>
       {isLoaded === true && isLoggedIn === false ? (
@@ -88,4 +91,8 @@ const Login = ({navigation}) => {
   );
 };
 
-export default Login;
+const mapStateToProps = state => ({
+  user: state.user,
+});
+
+export default connect(mapStateToProps)(Login);
