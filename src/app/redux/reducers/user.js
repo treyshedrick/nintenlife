@@ -8,6 +8,13 @@ const initialState = {
 
 const user = (state = initialState, action) => {
   switch (action.type) {
+    case U.USER_SIGNED_IN:
+      return {
+        ...state,
+        username: action.username,
+        email: action.email,
+        userState: action.type,
+      };
     case U.USER_LOGIN_SUCCESS:
       return {
         ...state,

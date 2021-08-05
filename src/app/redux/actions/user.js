@@ -34,3 +34,21 @@ export const signOut = () => {
         dispatch({type: U.USER_SIGNOUT_FAIL, error: err});
       });
 };
+
+export const currentAuthenticatedUser = () => {
+  return dispatch =>
+    Auth.currentAuthenticatedUser()
+      .then(user => {
+        console.log('Checked user auth');
+        dispatch({
+          type: U.USER_SIGNED_IN,
+          username: user.username,
+          email: user.attributes.email,
+        });
+        return;
+      })
+      .catch(err => {
+        console.log('Error: ', err);
+        dispatch({type: U.USER_SIGNED_OUT, error: err});
+      });
+};

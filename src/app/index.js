@@ -6,7 +6,7 @@ import {default as theme} from './helpers/theme.json';
 
 import Amplify from 'aws-amplify';
 import config from '../aws-exports';
-import {AppNavigator} from './helpers/navigation';
+import AppNavigator from './helpers/navigation';
 import {Provider} from 'react-redux';
 import configureStore from './redux/configureStore';
 

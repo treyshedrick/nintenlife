@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {View} from 'react-native';
 import {Layout, Input, Text, Button} from '@ui-kitten/components';
-import * as UA from '../../auth/userLogin';
+import * as UA from '../../api/userLogin';
 import styles from './styles/form';
 
 const Signup = ({navigation}) => {

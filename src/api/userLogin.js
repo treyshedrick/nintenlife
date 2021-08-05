@@ -40,5 +40,6 @@ export async function currentAuthenticatedUser() {
     return response;
   } catch (error) {
     console.log('Error!', error);
+    throw error;
   }
 }

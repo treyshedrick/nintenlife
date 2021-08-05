@@ -6,11 +6,11 @@ import * as UserActions from '../redux/actions/user';
 
 const Profile = ({navigation, user, actions}) => {
   const navigateLogin = () => {
-    navigation.navigate('Login');
+    navigation.navigate('Home');
   };
 
   const signOut = () => {
-    actions.signOut().then(() => navigateLogin());
+    actions.signOut();
   };
 
   console.log(user);
@@ -20,6 +20,7 @@ const Profile = ({navigation, user, actions}) => {
       <TopNavigation title="MyApp" alignment="center" />
       <Divider />
       <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Button onPress={navigateLogin}>Home</Button>
         <Button onPress={() => signOut()}>Sign Out</Button>
       </Layout>
     </Layout>
