@@ -1,25 +1,39 @@
 import React from 'react';
 import {Button, Divider, Layout, TopNavigation} from '@ui-kitten/components';
-import * as UA from '../../auth/userLogin';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as UserActions from '../redux/actions/user';
 
-const Profile = ({navigation}) => {
+const Profile = ({navigation, user, actions}) => {
   const navigateLogin = () => {
-    navigation.navigate('Login');
+    navigation.navigate('Home');
   };
 
   const signOut = () => {
-    UA.signOut().then(() => navigateLogin());
+    actions.signOut();
   };
+
+  console.log(user);
 
   return (
     <Layout style={{flex: 1, paddingTop: 30}}>
       <TopNavigation title="MyApp" alignment="center" />
       <Divider />
       <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Button onPress={navigateLogin}>Home</Button>
         <Button onPress={() => signOut()}>Sign Out</Button>
       </Layout>
     </Layout>
   );
 };
 
-export default Profile;
+const mapStateToProps = state => ({
+  user: state.user,
+});
+
+const ActionCreators = Object.assign({}, UserActions);
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(ActionCreators, dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
