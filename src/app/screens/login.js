@@ -29,6 +29,8 @@ const Login = ({navigation, user, actions}) => {
       });
   };
 
+  console.log(user);
+
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <Layout style={styles.layout}>

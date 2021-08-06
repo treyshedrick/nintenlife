@@ -21,15 +21,14 @@ const HomeNavigator = ({user, actions}) => {
     actions.currentAuthenticatedUser().then(() => setIsLoading(false));
   }, []);
 
-  console.log(user);
-
   if (isLoading) {
     return <SplashScreen />;
   }
   return (
     <Navigator headerMode="none">
       {user.userState === 'USER_LOGIN_SUCCESS' ||
-      user.userState === 'USER_SIGNED_IN' ? (
+      user.userState === 'USER_SIGNED_IN' ||
+      user.userState === 'USER_SIGNUP_SUCCESS' ? (
         <>
           <Screen name="Home" component={HomeScreen} />
           <Screen name="Posts" component={PostsScreen} />

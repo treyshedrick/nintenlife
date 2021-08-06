@@ -22,6 +22,13 @@ const user = (state = initialState, action) => {
         email: action.email,
         userState: action.type,
       };
+    case U.USER_SIGNUP_SUCCESS:
+      return {
+        ...state,
+        username: action.username,
+        email: action.email,
+        userState: action.type,
+      };
     case U.USER_SIGNOUT_SUCCESS:
       return {
         ...initialState,

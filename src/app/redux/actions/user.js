@@ -35,6 +35,31 @@ export const signOut = () => {
       });
 };
 
+export const signUp = (username, password, email) => {
+  return dispatch =>
+    Auth.signUp({
+      username: username,
+      password: password,
+      attributes: {
+        email: email,
+      },
+    })
+      .then(response => {
+        console.log('Successful SignUp dispatch');
+        dispatch({
+          type: U.USER_SIGNUP_SUCCESS,
+          username: response.user.username,
+        });
+        Auth.signIn(username, password);
+        console.log(response.user);
+        return response.user;
+      })
+      .catch(err => {
+        console.log('Error: ', err);
+        dispatch({type: U.USER_SIGNUP_FAIL, error: err});
+      });
+};
+
 export const currentAuthenticatedUser = () => {
   return dispatch =>
     Auth.currentAuthenticatedUser()

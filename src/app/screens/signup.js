@@ -1,10 +1,13 @@
 import React, {useState} from 'react';
 import {View} from 'react-native';
 import {Layout, Input, Text, Button} from '@ui-kitten/components';
-import * as UA from '../../api/userLogin';
-import styles from './styles/form';
 
-const Signup = ({navigation}) => {
+import styles from './styles/form';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import * as UserActions from '../redux/actions/user';
+
+const Signup = ({navigation, actions}) => {
   const [usernameValue, setUsernameValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
   const [emailAddressValue, seEmailAddressValue] = useState('');
@@ -14,7 +17,7 @@ const Signup = ({navigation}) => {
   };
 
   const signup = (username, password, email) => {
-    UA.signUp(username, password, email);
+    actions.signUp(username, password, email);
   };
 
   return (
@@ -56,4 +59,9 @@ const Signup = ({navigation}) => {
   );
 };
 
-export default Signup;
+const ActionCreators = Object.assign({}, UserActions);
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(ActionCreators, dispatch),
+});
+
+export default connect(null, mapDispatchToProps)(Signup);
