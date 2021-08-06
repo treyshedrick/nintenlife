@@ -1,34 +1,13 @@
 import React from 'react';
-import {
-  Divider,
-  Icon,
-  Layout,
-  Text,
-  TopNavigation,
-  TopNavigationAction,
-} from '@ui-kitten/components';
-
-const BackIcon = props => <Icon {...props} name="arrow-back" />;
+import {Divider, Layout, Text, TopNavigation} from '@ui-kitten/components';
 
 export const PostsScreen = ({navigation}) => {
-  const navigateBack = () => {
-    navigation.goBack();
-  };
-
-  const BackAction = () => (
-    <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
-  );
-
   return (
     <Layout style={{flex: 1, paddingTop: 30}}>
-      <TopNavigation
-        title="MyApp"
-        alignment="center"
-        accessoryLeft={BackAction}
-      />
+      <TopNavigation title="Posts" alignment="center" />
       <Divider />
       <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text category="h1">Posts</Text>
+        <Text category="h4">Posts</Text>
       </Layout>
     </Layout>
   );
