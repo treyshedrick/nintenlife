@@ -5,7 +5,7 @@ import {Layout, Input, Text, Button} from '@ui-kitten/components';
 import styles from './styles/form';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import * as UserActions from '../redux/actions/user';
+import * as UserActions from '../../redux/actions/user';
 
 const Signup = ({navigation, actions}) => {
   const [usernameValue, setUsernameValue] = useState('');

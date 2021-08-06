@@ -7,12 +7,12 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as UserActions from '../redux/actions/user';
 
-import {HomeScreen} from '../screens/home';
-import {PostsScreen} from '../screens/posts';
-import Login from '../screens/login';
-import Signup from '../screens/signup';
-import Profile from '../screens/profile';
-import SplashScreen from '../screens/splash';
+import {HomeScreen} from '../components/screens/Home';
+import {PostsScreen} from '../components/screens/Posts';
+import Login from '../components/screens/Login';
+import Signup from '../components/screens/Signup';
+import Profile from '../components/screens/Profile';
+import SplashScreen from '../components/screens/Splash';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();

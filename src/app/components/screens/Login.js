@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {View} from 'react-native';
 import {Layout, Input, Text, Button} from '@ui-kitten/components';
-import * as UserActions from '../redux/actions/user';
+import * as UserActions from '../../redux/actions/user';
 import styles from './styles/form';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -50,13 +50,13 @@ const Login = ({navigation, user, actions}) => {
           label={evaProps => <Text {...evaProps}>Password</Text>}
         />
         <View style={styles.btnRow}>
+          <Button style={styles.btn} onPress={navigateSignUp}>
+            Sign Up
+          </Button>
           <Button
             style={styles.btn}
             onPress={() => login(usernameValue, passwordValue)}>
             Login
-          </Button>
-          <Button style={styles.btn} onPress={navigateSignUp}>
-            Sign Up
           </Button>
         </View>
       </Layout>
