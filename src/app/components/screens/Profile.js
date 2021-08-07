@@ -1,11 +1,10 @@
 import React from 'react';
 import {Button, Divider, Layout, TopNavigation} from '@ui-kitten/components';
-import {SafeAreaView} from 'react-native';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as UserActions from '../../redux/actions/user';
 
-const Profile = ({navigation, user, actions}) => {
+const Profile = ({user, actions}) => {
   const signOut = () => {
     actions.signOut();
   };
@@ -14,14 +13,11 @@ const Profile = ({navigation, user, actions}) => {
 
   return (
     <Layout style={{height: '100%'}}>
-      <SafeAreaView style={{flex: 1}}>
-        <TopNavigation title="Profile" alignment="center" />
-        <Divider />
-        <Layout
-          style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-          <Button onPress={() => signOut()}>Sign Out</Button>
-        </Layout>
-      </SafeAreaView>
+      <TopNavigation title="Profile" alignment="center" />
+      <Divider />
+      <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Button onPress={() => signOut()}>Sign Out</Button>
+      </Layout>
     </Layout>
   );
 };

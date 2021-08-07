@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -14,16 +14,19 @@ import Signup from '../components/screens/Signup';
 import Profile from '../components/screens/Profile';
 import SplashScreen from '../components/screens/Splash';
 
+import {HomeIcon, ProfileIcon, PostIcon} from '../components/shared/icons';
+
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 const BottomTabBar = ({navigation, state}) => (
   <BottomNavigation
+    appearance={"noIndicator"}
     selectedIndex={state.index}
     onSelect={index => navigation.navigate(state.routeNames[index])}>
-    <BottomNavigationTab title="Home" />
-    <BottomNavigationTab title="Posts" />
-    <BottomNavigationTab title="Profile" />
+    <BottomNavigationTab title="Home" icon={HomeIcon} />
+    <BottomNavigationTab title="Posts" icon={PostIcon} />
+    <BottomNavigationTab title="Profile" icon={ProfileIcon} />
   </BottomNavigation>
 );
 

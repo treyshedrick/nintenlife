@@ -6,30 +6,27 @@ import styles from './styles/form';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {TouchableWithoutFeedback, Keyboard} from 'react-native';
+import {EyeIcon} from '../shared/icons';
 
 const Login = ({navigation, user, actions}) => {
   const [usernameValue, setUsernameValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
+  const [secureTextEntry, setSecureTextEntry] = useState(true);
 
   const navigateSignUp = () => {
     navigation.navigate('Signup');
   };
 
   const login = (username, password) => {
-    actions
-      .login(username, password)
-      .then(response => {
-        if (response?.username.length > 1) {
-          setUsernameValue('');
-          setPasswordValue('');
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    actions.login(username, password);
   };
 
-  console.log(user);
+  const ShowPasswordIcon = props => (
+    <TouchableWithoutFeedback
+      onPress={() => setSecureTextEntry(!secureTextEntry)}>
+      <EyeIcon {...props} name={!secureTextEntry ? 'eye' : 'eye-off'} />
+    </TouchableWithoutFeedback>
+  );
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -46,6 +43,8 @@ const Login = ({navigation, user, actions}) => {
         <Input
           style={styles.input}
           value={passwordValue}
+          secureTextEntry={secureTextEntry}
+          accessoryRight={ShowPasswordIcon}
           onChangeText={nextValue => setPasswordValue(nextValue)}
           label={evaProps => <Text {...evaProps}>Password</Text>}
         />
