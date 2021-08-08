@@ -13,10 +13,9 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     paddingBottom: 20,
   },
-  btnRow: {
-    marginTop: 20,
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
+  btn: {
+    margin: 6,
+    marginTop: 15,
   },
 });
 

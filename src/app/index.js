@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import * as eva from '@eva-design/eva';
 import {ApplicationProvider, IconRegistry, Layout} from '@ui-kitten/components';
 import {EvaIconsPack} from '@ui-kitten/eva-icons';
 import {default as theme} from './helpers/theme.json';
 import {SafeAreaView} from 'react-native';
+import {Appearance} from 'react-native';
 
 import Amplify from 'aws-amplify';
 import config from '../aws-exports';
@@ -21,10 +22,18 @@ Amplify.configure({
 const store = configureStore();
 
 const App = () => {
+  const [colorScheme, setColorScheme] = useState(Appearance.getColorScheme());
+
+  Appearance.addChangeListener(() => {
+    if (colorScheme !== Appearance.getColorScheme()) {
+      setColorScheme(Appearance.getColorScheme());
+    }
+  });
+
   return (
     <Provider store={store}>
       <IconRegistry icons={EvaIconsPack} />
-      <ApplicationProvider {...eva} theme={{...eva.dark, ...theme}}>
+      <ApplicationProvider {...eva} theme={{...eva[colorScheme], ...theme}}>
         <Layout style={{height: '100%'}}>
           <SafeAreaView style={{flex: 1}}>
             <AppNavigator />

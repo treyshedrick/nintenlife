@@ -21,7 +21,7 @@ const Stack = createStackNavigator();
 
 const BottomTabBar = ({navigation, state}) => (
   <BottomNavigation
-    appearance={"noIndicator"}
+    appearance={'noIndicator'}
     selectedIndex={state.index}
     onSelect={index => navigation.navigate(state.routeNames[index])}>
     <BottomNavigationTab title="Home" icon={HomeIcon} />

@@ -6,7 +6,7 @@ import styles from './styles/form';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {TouchableWithoutFeedback, Keyboard} from 'react-native';
-import {EyeIcon} from '../shared/icons';
+import {EyeIcon, LoadingIndicator} from '../shared/icons';
 
 const Login = ({navigation, user, actions}) => {
   const [usernameValue, setUsernameValue] = useState('');
@@ -28,6 +28,8 @@ const Login = ({navigation, user, actions}) => {
     </TouchableWithoutFeedback>
   );
 
+  const LoggingIn = user.userState === 'USER_LOGIN_REQUEST';
+
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <Layout style={styles.layout}>
@@ -48,14 +50,15 @@ const Login = ({navigation, user, actions}) => {
           onChangeText={nextValue => setPasswordValue(nextValue)}
           label={evaProps => <Text {...evaProps}>Password</Text>}
         />
-        <View style={styles.btnRow}>
-          <Button style={styles.btn} onPress={navigateSignUp}>
-            Sign Up
-          </Button>
+        <View style={styles.btnCol}>
           <Button
             style={styles.btn}
+            disabled={LoggingIn ? true : false}
             onPress={() => login(usernameValue, passwordValue)}>
-            Login
+            {!LoggingIn ? 'Login' : <LoadingIndicator />}
+          </Button>
+          <Button appearance="ghost" onPress={navigateSignUp}>
+            Need an account? Sign Up
           </Button>
         </View>
       </Layout>

@@ -34,6 +34,16 @@ const user = (state = initialState, action) => {
         ...initialState,
         userState: action.type,
       };
+    case U.USER_LOGIN_REQUEST:
+      return {
+        ...state,
+        userState: action.type,
+      };
+    case U.USER_LOGIN_FAIL:
+      return {
+        ...state,
+        userState: action.type,
+      };
     default:
       return state;
   }

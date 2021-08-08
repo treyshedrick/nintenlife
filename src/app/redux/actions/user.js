@@ -1,22 +1,22 @@
 import * as U from '../constants/user';
 import {Auth} from 'aws-amplify';
 
-export const login = (username, password) => {
-  return dispatch =>
-    Auth.signIn(username, password)
-      .then(user => {
-        console.log('Successful login dispatch');
-        dispatch({
-          type: U.USER_LOGIN_SUCCESS,
-          username: user.username,
-          email: user.attributes.email,
-        });
-        return user;
-      })
-      .catch(err => {
-        console.log('Error: ', err);
-        dispatch({type: U.USER_LOGIN_FAIL, error: err});
+export const login = (username, password) => dispatch => {
+  dispatch({type: U.USER_LOGIN_REQUEST});
+  Auth.signIn(username, password)
+    .then(user => {
+      console.log('Successful login dispatch');
+      dispatch({
+        type: U.USER_LOGIN_SUCCESS,
+        username: user.username,
+        email: user.attributes.email,
       });
+      return user;
+    })
+    .catch(err => {
+      console.log('Error: ', err);
+      dispatch({type: U.USER_LOGIN_FAIL, error: err});
+    });
 };
 
 export const signOut = () => {
