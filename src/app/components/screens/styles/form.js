@@ -9,9 +9,11 @@ const styles = StyleSheet.create({
   input: {
     margin: 6,
   },
-  center: {
+  centerLogo: {
+    margin: 20,
     alignSelf: 'center',
-    paddingBottom: 20,
+    height: 90,
+    width: 150,
   },
   btn: {
     margin: 6,

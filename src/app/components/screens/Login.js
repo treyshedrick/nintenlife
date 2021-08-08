@@ -5,8 +5,9 @@ import * as UserActions from '../../redux/actions/user';
 import styles from './styles/form';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {TouchableWithoutFeedback, Keyboard} from 'react-native';
+import {TouchableWithoutFeedback, Keyboard, Image} from 'react-native';
 import {EyeIcon, LoadingIndicator} from '../shared/icons';
+import logo from '../../../assets/logo.png';
 
 const Login = ({navigation, user, actions}) => {
   const [usernameValue, setUsernameValue] = useState('');
@@ -33,9 +34,7 @@ const Login = ({navigation, user, actions}) => {
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <Layout style={styles.layout}>
-        <Text category="h1" style={styles.center}>
-          NintenLife
-        </Text>
+        <Image source={logo} style={styles.centerLogo} />
         <Input
           style={styles.input}
           value={usernameValue}
