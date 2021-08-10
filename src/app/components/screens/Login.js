@@ -19,7 +19,9 @@ const Login = ({navigation, user, actions}) => {
   };
 
   const login = (username, password) => {
-    actions.login(username, password);
+    if (usernameValue.length > 0 && passwordValue.length > 0) {
+      return actions.login(username, password);
+    }
   };
 
   const ShowPasswordIcon = props => (

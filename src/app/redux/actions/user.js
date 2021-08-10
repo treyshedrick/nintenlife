@@ -15,7 +15,7 @@ export const login = (username, password) => dispatch => {
     })
     .catch(err => {
       console.log('Error: ', err);
-      dispatch({type: U.USER_LOGIN_FAIL, error: err});
+      dispatch({type: U.USER_LOGIN_FAIL, error: err.message});
     });
 };
 
