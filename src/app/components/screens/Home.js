@@ -7,19 +7,26 @@ import {
   Button,
   useTheme,
 } from '@ui-kitten/components';
-import {ImageBackground, StyleSheet} from 'react-native';
+import {ImageBackground, StyleSheet, ScrollView} from 'react-native';
 import pageStyles from './styles/page';
 import {getNintendoNews} from '../../../services/newsApi';
+import HeaderCard from '../shared/HeaderCard';
 
 export const HomeScreen = ({navigation}) => {
   const theme = useTheme();
   const styles = StyleSheet.create({
-    mainArticleContainer: {
+    mainArticlesContainer: {
       flex: 1,
       flexDirection: 'column',
     },
     imgContainer: {
       height: '50%',
+    },
+    articlesScroll: {
+      marginTop: 20,
+      marginBottom: 20,
+      display: 'flex',
+      justifyContent: 'center',
     },
     mainLayout: {
       flex: 1,
@@ -55,11 +62,11 @@ export const HomeScreen = ({navigation}) => {
     <Layout style={pageStyles.fullPage}>
       <TopNavigation title="NintenLife" alignment="center" />
       <Divider />
-      <Layout style={styles.mainArticleContainer}>
+      <Layout style={styles.mainArticlesContainer}>
         <Layout style={styles.imgContainer}>
           {isLoaded && (
             <ImageBackground
-              source={{uri: newsArticles[3].media}}
+              source={{uri: newsArticles[0].media}}
               resizeMode="cover"
               style={styles.mainLayout}>
               <Layout style={styles.titleSideHeader}>
@@ -67,13 +74,22 @@ export const HomeScreen = ({navigation}) => {
                   style={styles.sideHeaderText}
                   category="h6"
                   numberOfLines={2}>
-                  {newsArticles[3].title}
+                  {newsArticles[0].title}
                 </Text>
               </Layout>
               <Button>Read</Button>
             </ImageBackground>
           )}
         </Layout>
+        <ScrollView contentContainerStyle={styles.articlesScroll} horizontal>
+          {isLoaded && (
+            <>
+              {newsArticles.slice(1).map((article, i) => (
+                <HeaderCard article={article} />
+              ))}
+            </>
+          )}
+        </ScrollView>
       </Layout>
     </Layout>
   );
