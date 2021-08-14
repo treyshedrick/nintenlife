@@ -7,14 +7,40 @@ import {
   Button,
   useTheme,
 } from '@ui-kitten/components';
-import {ImageBackground} from 'react-native';
+import {ImageBackground, StyleSheet} from 'react-native';
+import pageStyles from './styles/page';
 import {getNintendoNews} from '../../../services/newsApi';
 
 export const HomeScreen = ({navigation}) => {
+  const theme = useTheme();
+  const styles = StyleSheet.create({
+    mainArticleContainer: {
+      flex: 1,
+      flexDirection: 'column',
+    },
+    imgContainer: {
+      height: '50%',
+    },
+    mainLayout: {
+      flex: 1,
+      justifyContent: 'space-between',
+    },
+    titleSideHeader: {
+      backgroundColor: theme['background-basic-color-1'],
+      borderTopRightRadius: 10,
+      borderBottomRightRadius: 10,
+      width: '75%',
+      marginTop: 20,
+      opacity: 0.9,
+    },
+    sideHeaderText: {
+      color: theme['text-basic-color'],
+      margin: 10,
+    },
+  });
+
   const [newsArticles, setNewsArticles] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
-
-  const theme = useTheme();
 
   useEffect(() => {
     getNintendoNews()
@@ -26,27 +52,19 @@ export const HomeScreen = ({navigation}) => {
   }, []);
 
   return (
-    <Layout style={{height: '100%'}}>
+    <Layout style={pageStyles.fullPage}>
       <TopNavigation title="NintenLife" alignment="center" />
       <Divider />
-      <Layout style={{flex: 1, flexDirection: 'column'}}>
-        <Layout style={{height: '50%'}}>
+      <Layout style={styles.mainArticleContainer}>
+        <Layout style={styles.imgContainer}>
           {isLoaded && (
             <ImageBackground
               source={{uri: newsArticles[3].media}}
               resizeMode="cover"
-              style={{flex: 1, justifyContent: 'space-between'}}>
-              <Layout
-                style={{
-                  backgroundColor: theme['background-basic-color-1'],
-                  borderTopRightRadius: 10,
-                  borderBottomRightRadius: 10,
-                  width: '75%',
-                  marginTop: 20,
-                  opacity: 0.9,
-                }}>
+              style={styles.mainLayout}>
+              <Layout style={styles.titleSideHeader}>
                 <Text
-                  style={{color: theme['text-basic-color'], margin: 10}}
+                  style={styles.sideHeaderText}
                   category="h6"
                   numberOfLines={2}>
                   {newsArticles[3].title}
