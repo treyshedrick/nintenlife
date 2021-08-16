@@ -7,7 +7,7 @@ import {
   Button,
   useTheme,
 } from '@ui-kitten/components';
-import {ImageBackground, StyleSheet, ScrollView} from 'react-native';
+import {ImageBackground, StyleSheet, FlatList} from 'react-native';
 import pageStyles from './styles/page';
 import {getNintendoNews} from '../../../services/newsApi';
 import HeaderCard from '../shared/HeaderCard';
@@ -90,15 +90,17 @@ export const HomeScreen = ({navigation}) => {
             </ImageBackground>
           )}
         </Layout>
-        <ScrollView contentContainerStyle={styles.articlesScroll} horizontal>
-          {isLoaded && (
-            <>
-              {newsArticles.slice(1).map((article, i) => (
-                <HeaderCard article={article} key={article._id} />
-              ))}
-            </>
-          )}
-        </ScrollView>
+        {isLoaded && (
+          <FlatList
+            data={newsArticles.slice(1)}
+            contentContainerStyle={styles.articlesScroll}
+            keyExtractor={item => item._id}
+            horizontal
+            renderItem={({item}) => <HeaderCard article={item} />}
+            initialNumToRender={2}
+            windowSize={2}
+          />
+        )}
       </Layout>
     </Layout>
   );
