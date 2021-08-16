@@ -85,7 +85,7 @@ export const HomeScreen = ({navigation}) => {
           {isLoaded && (
             <>
               {newsArticles.slice(1).map((article, i) => (
-                <HeaderCard article={article} />
+                <HeaderCard article={article} key={article._id} />
               ))}
             </>
           )}
