@@ -44,6 +44,10 @@ export const HomeScreen = ({navigation}) => {
       color: theme['text-basic-color'],
       margin: 10,
     },
+    mainBtn: {
+      marginVertical: 20,
+      marginHorizontal: 50,
+    },
   });
 
   const [newsArticles, setNewsArticles] = useState([]);
@@ -52,7 +56,12 @@ export const HomeScreen = ({navigation}) => {
   useEffect(() => {
     getNintendoNews()
       .then(response => {
-        setNewsArticles(response.articles);
+        const articles = response.articles.filter(
+          (article, index, arr) =>
+            index === arr.findIndex(a => a.title === article.title),
+        );
+
+        setNewsArticles(articles);
         setIsLoaded(true);
       })
       .catch(err => console.log(err));
@@ -77,7 +86,7 @@ export const HomeScreen = ({navigation}) => {
                   {newsArticles[0].title}
                 </Text>
               </Layout>
-              <Button>Read</Button>
+              <Button style={styles.mainBtn}>Read</Button>
             </ImageBackground>
           )}
         </Layout>
