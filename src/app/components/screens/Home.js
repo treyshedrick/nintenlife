@@ -7,7 +7,7 @@ import {
   Button,
   useTheme,
 } from '@ui-kitten/components';
-import {ImageBackground, StyleSheet, FlatList} from 'react-native';
+import {ImageBackground, StyleSheet, FlatList, Linking} from 'react-native';
 import pageStyles from './styles/page';
 import {getNintendoNews} from '../../../services/newsApi';
 import HeaderCard from '../shared/HeaderCard';
@@ -53,6 +53,10 @@ export const HomeScreen = ({navigation}) => {
   const [newsArticles, setNewsArticles] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
+  const openLink = url => {
+    Linking.openURL(url);
+  };
+
   useEffect(() => {
     getNintendoNews()
       .then(response => {
@@ -86,7 +90,11 @@ export const HomeScreen = ({navigation}) => {
                   {newsArticles[0].title}
                 </Text>
               </Layout>
-              <Button style={styles.mainBtn}>Read</Button>
+              <Button
+                style={styles.mainBtn}
+                onPress={() => openLink(newsArticles[0].link)}>
+                Read
+              </Button>
             </ImageBackground>
           )}
         </Layout>
@@ -96,7 +104,9 @@ export const HomeScreen = ({navigation}) => {
             contentContainerStyle={styles.articlesScroll}
             keyExtractor={item => item._id}
             horizontal
-            renderItem={({item}) => <HeaderCard article={item} />}
+            renderItem={({item}) => (
+              <HeaderCard article={item} openLink={openLink} />
+            )}
             initialNumToRender={2}
             windowSize={2}
           />

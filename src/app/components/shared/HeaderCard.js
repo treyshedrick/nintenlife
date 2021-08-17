@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, Card} from '@ui-kitten/components';
-import {View, ImageBackground, StyleSheet} from 'react-native';
+import {ImageBackground, StyleSheet} from 'react-native';
 
 const Header = ({image}) => {
   const styles = StyleSheet.create({
@@ -19,7 +19,7 @@ const Header = ({image}) => {
   );
 };
 
-const HeaderCard = ({article}) => {
+const HeaderCard = ({article, openLink}) => {
   const styles = StyleSheet.create({
     card: {
       flex: 1,
@@ -30,7 +30,10 @@ const HeaderCard = ({article}) => {
   });
 
   return (
-    <Card style={styles.card} header={<Header image={article.media} />}>
+    <Card
+      style={styles.card}
+      header={<Header image={article.media} />}
+      onPress={() => openLink(article.link)}>
       <Text numberOfLines={2}>{article.title}</Text>
     </Card>
   );
