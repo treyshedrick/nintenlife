@@ -41,6 +41,7 @@ export const signUp = (username, password, email) => {
       username: username,
       password: password,
       attributes: {
+        preferred_username: username,
         email: email,
       },
     })
