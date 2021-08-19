@@ -87,6 +87,7 @@ amplify/backend/api/*
 amplify/backend/api/nintenlife/*
 
 !amplify/backend/api/nintenlife/schema.graphql
+/src/graphql/schema.json
 
 # env
 .env
