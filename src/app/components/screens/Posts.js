@@ -20,9 +20,15 @@ export const PostsScreen = ({navigation}) => {
       bottom: 30,
       right: 30,
       borderRadius: 50,
+      paddingTop: 22,
+      paddingBottom: 22,
       position: 'absolute',
     },
   });
+
+  const navigateNewPost = () => {
+    navigation.navigate('NewPost');
+  };
 
   return (
     <Layout style={pageStyles.fullPage}>
@@ -32,7 +38,12 @@ export const PostsScreen = ({navigation}) => {
         <ScrollView contentContainerStyle={styles.contentContainer}>
           <Text category="h4">Posts</Text>
         </ScrollView>
-        <Button style={styles.button} size="giant" accessoryLeft={EditIcon} />
+        <Button
+          style={styles.button}
+          size="giant"
+          accessoryLeft={EditIcon}
+          onPress={navigateNewPost}
+        />
       </Layout>
     </Layout>
   );
