@@ -1,8 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {BottomNavigation, BottomNavigationTab} from '@ui-kitten/components';
+import {
+  BottomNavigation,
+  BottomNavigationTab,
+  useTheme,
+} from '@ui-kitten/components';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as UserActions from '../redux/actions/user';
@@ -33,9 +37,7 @@ const BottomTabBar = ({navigation, state}) => (
 
 const PostsNavigator = () => {
   return (
-    <Stack.Navigator
-      headerMode="none"
-      screenOptions={{animationEnabled: false}}>
+    <Stack.Navigator headerMode="none">
       <Stack.Screen name="PostsScreen" component={PostsScreen} />
       <Stack.Screen name="NewPost" component={NewPost} />
     </Stack.Navigator>
@@ -76,10 +78,18 @@ const HomeNavigator = ({user, actions}) => {
     </>
   );
 };
-
 const AppNavigator = ({user, actions}) => {
+  const theme = useTheme();
+  const MyTheme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      background: theme['background-basic-color-1'],
+    },
+  };
+
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={MyTheme}>
       <HomeNavigator user={user} actions={actions} />
     </NavigationContainer>
   );
