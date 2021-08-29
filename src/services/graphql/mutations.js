@@ -1,6 +1,3 @@
-/* eslint-disable */
-// this is an auto generated file. This will be overwritten
-
 export const createPost = /* GraphQL */ `
   mutation CreatePost(
     $input: CreatePostInput!
@@ -8,6 +5,8 @@ export const createPost = /* GraphQL */ `
   ) {
     createPost(input: $input, condition: $condition) {
       id
+      user_id
+      user
       name
       description
       createdAt
@@ -22,6 +21,8 @@ export const updatePost = /* GraphQL */ `
   ) {
     updatePost(input: $input, condition: $condition) {
       id
+      user_id
+      user
       name
       description
       createdAt
@@ -36,6 +37,8 @@ export const deletePost = /* GraphQL */ `
   ) {
     deletePost(input: $input, condition: $condition) {
       id
+      user_id
+      user
       name
       description
       createdAt

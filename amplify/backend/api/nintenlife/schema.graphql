@@ -1,5 +1,7 @@
 type Post @model {
   id: ID!
+  user_id: ID!
+  user: String!
   name: String!
   description: String
 }

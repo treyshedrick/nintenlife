@@ -1,10 +1,9 @@
-/* eslint-disable */
-// this is an auto generated file. This will be overwritten
-
 export const getPost = /* GraphQL */ `
   query GetPost($id: ID!) {
     getPost(id: $id) {
       id
+      user_id
+      user
       name
       description
       createdAt
@@ -21,6 +20,8 @@ export const listPosts = /* GraphQL */ `
     listPosts(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        user_id
+        user
         name
         description
         createdAt
