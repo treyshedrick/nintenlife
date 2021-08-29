@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Divider,
   Layout,
@@ -11,6 +11,9 @@ import {
 import {StyleSheet} from 'react-native';
 import pageStyles from './styles/page';
 import {BackIcon} from '../shared/icons';
+import {API, graphqlOperation} from 'aws-amplify';
+import {createPost, updatePost, deletePost} from '../../../services/graphql/mutations';
+import {listPosts} from '../../../services/graphql/queries';
 
 const NewPost = ({navigation}) => {
   const styles = StyleSheet.create({
@@ -34,6 +37,23 @@ const NewPost = ({navigation}) => {
   const BackAction = () => (
     <TopNavigationAction icon={BackIcon} onPress={() => navigation.goBack()} />
   );
+
+  const sendPost = async (titleName, postDescription) => {
+    try {
+      await API.graphql(
+        graphqlOperation(createPost, {
+          input: {name: titleName, description: postDescription},
+        }),
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(async () => {
+    const test = await API.graphql(graphqlOperation(listPosts));
+    console.log(test.data.listPosts);
+  }, []);
 
   return (
     <Layout style={pageStyles.fullPage}>
@@ -64,7 +84,7 @@ const NewPost = ({navigation}) => {
           style={styles.fullBtn}
           onPress={() => {
             navigation.goBack();
-            console.log({title, post});
+            sendPost(title, post);
           }}>
           Post!
         </Button>
