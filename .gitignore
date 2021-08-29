@@ -94,3 +94,5 @@ amplify/backend/api/nintenlife/*
 
 #vscode
 .vscode
+amplify/mock-data
+src/models
