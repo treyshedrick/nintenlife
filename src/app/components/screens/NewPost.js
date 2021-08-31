@@ -11,11 +11,12 @@ import {
 import {StyleSheet} from 'react-native';
 import pageStyles from './styles/page';
 import {BackIcon} from '../shared/icons';
-import {API, graphqlOperation} from 'aws-amplify';
-import {createPost, updatePost, deletePost} from '../../../services/graphql/mutations';
-import {listPosts} from '../../../services/graphql/queries';
 
-const NewPost = ({navigation}) => {
+import {connect} from 'react-redux';
+import {API, graphqlOperation} from 'aws-amplify';
+import {createPost} from '../../../services/graphql/mutations';
+
+const NewPost = ({user, navigation}) => {
   const styles = StyleSheet.create({
     contentContainer: {
       flex: 0.6,
@@ -42,18 +43,18 @@ const NewPost = ({navigation}) => {
     try {
       await API.graphql(
         graphqlOperation(createPost, {
-          input: {name: titleName, description: postDescription},
+          input: {
+            name: titleName,
+            description: postDescription,
+            user_id: user.id,
+            user: user.username,
+          },
         }),
       );
     } catch (error) {
       console.log(error);
     }
   };
-
-  useEffect(async () => {
-    const test = await API.graphql(graphqlOperation(listPosts));
-    console.log(test.data.listPosts);
-  }, []);
 
   return (
     <Layout style={pageStyles.fullPage}>
@@ -93,4 +94,8 @@ const NewPost = ({navigation}) => {
   );
 };
 
-export default NewPost;
+const mapStateToProps = state => ({
+  user: state.user,
+});
+
+export default connect(mapStateToProps)(NewPost);
