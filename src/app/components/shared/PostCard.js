@@ -29,9 +29,8 @@ const Header = ({title}) => {
 const PostCard = ({post}) => {
   const styles = StyleSheet.create({
     card: {
-      flex: 1,
       maxHeight: 250,
-      width: '100%',
+      minWidth: '100%',
       alignSelf: 'stretch',
       justifyContent: 'center',
       marginTop: 10,
