@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Divider, Layout, TopNavigation, Button} from '@ui-kitten/components';
-import {StyleSheet, ScrollView} from 'react-native';
+import {StyleSheet, FlatList} from 'react-native';
 import {EditIcon} from '../shared/icons';
 import pageStyles from './styles/page';
 import PostCard from '../shared/PostCard';
+
+import {API, graphqlOperation} from 'aws-amplify';
+import {listPosts} from '../../../services/graphql/queries';
 
 export const PostsScreen = ({navigation}) => {
   const styles = StyleSheet.create({
@@ -20,33 +23,50 @@ export const PostsScreen = ({navigation}) => {
       bottom: 25,
       right: 25,
       borderRadius: 50,
-      paddingTop: 22,
-      paddingBottom: 22,
+      paddingTop: 18,
+      paddingBottom: 18,
       position: 'absolute',
     },
   });
 
+  const [allposts, getAllPosts] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+
   const navigateNewPost = () => {
     navigation.navigate('NewPost');
   };
+
+  useEffect(async () => {
+    const posts = await API.graphql(graphqlOperation(listPosts));
+    getAllPosts(posts.data.listPosts.items);
+    setIsLoaded(true);
+  }, []);
 
   return (
     <Layout style={pageStyles.fullPage}>
       <TopNavigation title="Posts" alignment="center" />
       <Divider />
       <Layout style={styles.contentContainer}>
-        <ScrollView contentContainerStyle={styles.scrollContainer}>
-          <PostCard
-            post={{
-              title: 'Zelda: Breath of the Wild Review',
-              summary:
-                'This is another test to see if it goes all the way to the width asldfh asd fowier als dfalsdjf asld fa;ls dfa sdf asd fa sdf asd faw',
-            }}
+        {isLoaded && (
+          <FlatList
+            data={allposts}
+            contentContainerStyle={styles.scrollContainer}
+            keyExtractor={item => item.id}
+            vertical
+            renderItem={({item}) => (
+              <PostCard
+                post={{
+                  title: item.name,
+                  summary: item.description,
+                }}
+              />
+            )}
+            initialNumToRender={2}
+            windowSize={2}
           />
-        </ScrollView>
+        )}
         <Button
           style={styles.button}
-          size="giant"
           accessoryLeft={EditIcon}
           onPress={navigateNewPost}
         />
