@@ -1,0 +1,15 @@
+projects:
+  nintenlife:
+    schemaPath: src/graphql/schema.json
+    includes:
+      - src/services/graphql
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: javascript
+        generatedFileName: ''
+        docsFilePath: src/services
+extensions:
+  amplify:
+    version: 3
