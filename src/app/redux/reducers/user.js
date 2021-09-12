@@ -5,6 +5,7 @@ const initialState = {
   error: null,
   username: '',
   email: '',
+  id: null,
 };
 
 const user = (state = initialState, action) => {
@@ -17,6 +18,7 @@ const user = (state = initialState, action) => {
         username: action.username,
         email: action.email,
         userState: action.type,
+        id: action.id,
       };
     case U.USER_SIGNOUT_SUCCESS:
     case U.USER_LOGIN_REQUEST:

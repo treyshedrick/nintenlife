@@ -10,6 +10,7 @@ export const login = (username, password) => dispatch => {
         type: U.USER_LOGIN_SUCCESS,
         username: user.username,
         email: user.attributes.email,
+        id: user.attributes.sub,
       });
       return user;
     })
@@ -70,6 +71,7 @@ export const currentAuthenticatedUser = () => {
           type: U.USER_SIGNED_IN,
           username: user.username,
           email: user.attributes.email,
+          id: user.attributes.sub,
         });
         return;
       })

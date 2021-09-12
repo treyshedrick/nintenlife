@@ -5,7 +5,9 @@ import {Icon, Spinner} from '@ui-kitten/components';
 export const HomeIcon = props => <Icon {...props} name="home" />;
 export const ProfileIcon = props => <Icon {...props} name="person" />;
 export const PostIcon = props => <Icon {...props} name="book" />;
+export const EditIcon = props => <Icon {...props} name="edit" />;
 export const EyeIcon = props => <Icon {...props} />; //pass name through props to change on the fly
+export const BackIcon = props => <Icon {...props} name="arrow-back" />;
 
 export const LoadingIndicator = props => (
   <View style={[props.style, styles.indicator]}>

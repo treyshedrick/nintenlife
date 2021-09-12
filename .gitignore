@@ -59,7 +59,7 @@ buck-out/
 /ios/Pods/
 
 #amplify
-amplify/
+
 build/
 dist/
 node_modules/
@@ -73,5 +73,26 @@ amplifytools.xcconfig
 .secret-*
 .vscode
 
+#show graphql schema
+!amplify/
+amplify/*
+
+!amplify/backend/
+amplify/backend/*
+
+!amplify/backend/api/
+amplify/backend/api/*
+
+!amplify/backend/api/nintenlife
+amplify/backend/api/nintenlife/*
+
+!amplify/backend/api/nintenlife/schema.graphql
+/src/graphql/schema.json
+
 # env
 .env
+
+#vscode
+.vscode
+amplify/mock-data
+src/models
