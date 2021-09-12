@@ -9,7 +9,7 @@ import {
   Input,
 } from '@ui-kitten/components';
 import {StyleSheet} from 'react-native';
-import pageStyles from './styles/page';
+import pageStyles from '../shared/styles/page';
 import {BackIcon} from '../shared/icons';
 
 import {connect} from 'react-redux';
