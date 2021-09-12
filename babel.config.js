@@ -8,6 +8,9 @@ module.exports = {
         root: ['./src'],
         alias: {
           '~app': './src/app',
+          '~assets': './src/assets',
+          '~services': './src/services',
+          '~graphql': './src/services/graphql',
           '~screens': './src/app/components/screens',
           '~shared': './src/app/components/shared',
           '~helpers': './src/app/helpers',
