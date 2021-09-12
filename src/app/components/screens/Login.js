@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {View} from 'react-native';
 import {Layout, Input, Text, Button} from '@ui-kitten/components';
 import * as UserActions from '../../redux/actions/user';
-import styles from './styles/form';
+import styles from '../shared/styles/form';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {TouchableWithoutFeedback, Keyboard, Image} from 'react-native';

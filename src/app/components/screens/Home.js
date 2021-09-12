@@ -8,7 +8,7 @@ import {
   useTheme,
 } from '@ui-kitten/components';
 import {ImageBackground, StyleSheet, FlatList, Linking} from 'react-native';
-import pageStyles from './styles/page';
+import pageStyles from '../shared/styles/page';
 import {getNintendoNews} from '../../../services/newsApi';
 import HeaderCard from '../shared/HeaderCard';
 

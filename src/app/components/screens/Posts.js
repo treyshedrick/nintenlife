@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Divider, Layout, TopNavigation, Button} from '@ui-kitten/components';
 import {StyleSheet, FlatList} from 'react-native';
 import {EditIcon} from '../shared/icons';
-import pageStyles from './styles/page';
+import pageStyles from '../shared/styles/page';
 import PostCard from '../shared/PostCard';
 
 import {API, graphqlOperation} from 'aws-amplify';
