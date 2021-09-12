@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import {View} from 'react-native';
 import {Layout, Input, Text, Button} from '@ui-kitten/components';
-import * as UserActions from '../../redux/actions/user';
-import styles from '../shared/styles/form';
+import * as UserActions from '~redux/actions/user';
+import styles from '~shared/styles/form';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {TouchableWithoutFeedback, Keyboard, Image} from 'react-native';
-import {EyeIcon, LoadingIndicator} from '../shared/icons';
-import logo from '../../../assets/logo.png';
+import {EyeIcon, LoadingIndicator} from '~shared/icons';
+import logo from '~assets/logo.png';
 
 const Login = ({navigation, user, actions}) => {
   const [usernameValue, setUsernameValue] = useState('');

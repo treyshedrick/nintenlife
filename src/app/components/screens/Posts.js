@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {Divider, Layout, TopNavigation, Button} from '@ui-kitten/components';
 import {StyleSheet, FlatList} from 'react-native';
-import {EditIcon} from '../shared/icons';
-import pageStyles from '../shared/styles/page';
-import PostCard from '../shared/PostCard';
+import {EditIcon} from '~shared/icons';
+import pageStyles from '~shared/styles/page';
+import PostCard from '~shared/PostCard';
 
 import {API, graphqlOperation} from 'aws-amplify';
-import {listPosts} from '../../../services/graphql/queries';
+import {listPosts} from '~graphql/queries';
 
 export const PostsScreen = ({navigation}) => {
   const styles = StyleSheet.create({

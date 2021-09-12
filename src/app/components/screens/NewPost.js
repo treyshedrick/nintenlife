@@ -9,12 +9,12 @@ import {
   Input,
 } from '@ui-kitten/components';
 import {StyleSheet} from 'react-native';
-import pageStyles from '../shared/styles/page';
-import {BackIcon} from '../shared/icons';
+import pageStyles from '~shared/styles/page';
+import {BackIcon} from '~shared/icons';
 
 import {connect} from 'react-redux';
 import {API, graphqlOperation} from 'aws-amplify';
-import {createPost} from '../../../services/graphql/mutations';
+import {createPost} from '~graphql/mutations';
 
 const NewPost = ({user, navigation}) => {
   const styles = StyleSheet.create({

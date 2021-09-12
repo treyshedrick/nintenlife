@@ -2,11 +2,11 @@ import React, {useState} from 'react';
 import {Layout, Input, Text, Button} from '@ui-kitten/components';
 import {TouchableWithoutFeedback} from 'react-native';
 
-import styles from '../shared/styles/form';
-import {EyeIcon} from '../shared/icons';
+import styles from '~shared/styles/form';
+import {EyeIcon} from '~shared/icons';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import * as UserActions from '../../redux/actions/user';
+import * as UserActions from '~redux/actions/user';
 
 const Signup = ({navigation, actions}) => {
   const [usernameValue, setUsernameValue] = useState('');
