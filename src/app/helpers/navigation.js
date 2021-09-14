@@ -9,17 +9,17 @@ import {
 } from '@ui-kitten/components';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import * as UserActions from '../redux/actions/user';
+import * as UserActions from '~redux/actions/user';
 
-import {HomeScreen} from '../components/screens/Home';
-import {PostsScreen} from '../components/screens/Posts';
-import Login from '../components/screens/Login';
-import Signup from '../components/screens/Signup';
-import Profile from '../components/screens/Profile';
-import SplashScreen from '../components/screens/Splash';
-import NewPost from '../components/screens/NewPost';
+import {HomeScreen} from '~screens//Home';
+import {PostsScreen} from '~screens//Posts';
+import Login from '~screens/Login';
+import Signup from '~screens/Signup';
+import Profile from '~screens//Profile';
+import SplashScreen from '~screens//Splash';
+import NewPost from '~screens//NewPost';
 
-import {HomeIcon, ProfileIcon, PostIcon} from '../components/shared/icons';
+import {HomeIcon, ProfileIcon, PostIcon} from '~shared/icons';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();

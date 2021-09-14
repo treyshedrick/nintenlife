@@ -2,15 +2,15 @@ import React, {useState} from 'react';
 import * as eva from '@eva-design/eva';
 import {ApplicationProvider, IconRegistry, Layout} from '@ui-kitten/components';
 import {EvaIconsPack} from '@ui-kitten/eva-icons';
-import {default as theme} from './helpers/theme.json';
 import {SafeAreaView} from 'react-native';
 import {Appearance} from 'react-native';
-
 import Amplify from 'aws-amplify';
 import config from '../aws-exports';
-import AppNavigator from './helpers/navigation';
 import {Provider} from 'react-redux';
-import configureStore from './redux/configureStore';
+
+import configureStore from '~redux/configureStore';
+import {default as theme} from '~helpers/theme.json';
+import AppNavigator from '~helpers/navigation';
 
 Amplify.configure({
   ...config,
