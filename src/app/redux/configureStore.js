@@ -1,5 +1,5 @@
 import {createStore, combineReducers} from 'redux';
-import user from './reducers/user';
+import user from '~redux/reducers/user';
 import {applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 

@@ -1,4 +1,4 @@
-import * as U from '../constants/user';
+import * as U from '~redux/constants/user';
 
 const initialState = {
   userState: null,
