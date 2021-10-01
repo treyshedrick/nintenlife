@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
 import {Divider, Layout, TopNavigation, Button} from '@ui-kitten/components';
-import {StyleSheet, FlatList} from 'react-native';
+import {StyleSheet, FlatList, RefreshControl} from 'react-native';
 import {EditIcon} from '~shared/icons';
 import pageStyles from '~shared/styles/page';
 import PostCard from '~shared/PostCard';
@@ -31,14 +31,23 @@ export const PostsScreen = ({navigation}) => {
 
   const [allposts, getAllPosts] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [refreshing, setRefreshing] = React.useState(false);
 
   const navigateNewPost = () => {
     navigation.navigate('NewPost');
   };
 
+  const onRefresh = useCallback(async () => {
+    const refreshPosts = await API.graphql(graphqlOperation(listPosts));
+    getAllPosts(refreshPosts.data.listPosts.items);
+
+    setRefreshing(false);
+  }, []);
+
   useEffect(async () => {
     const posts = await API.graphql(graphqlOperation(listPosts));
     getAllPosts(posts.data.listPosts.items);
+
     setIsLoaded(true);
   }, []);
 
@@ -63,6 +72,9 @@ export const PostsScreen = ({navigation}) => {
             )}
             initialNumToRender={2}
             windowSize={2}
+            refreshControl={
+              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
           />
         )}
         <Button
