@@ -1,6 +1,7 @@
 import React from 'react';
 import {Text, Card, useTheme} from '@ui-kitten/components';
 import {StyleSheet, View} from 'react-native';
+import {format} from 'date-fns';
 
 const Header = ({title}) => {
   const theme = useTheme();
@@ -27,24 +28,24 @@ const Header = ({title}) => {
 };
 
 const Footer = ({name, date}) => {
-  const theme = useTheme();
-
   const styles = StyleSheet.create({
     headerContainer: {
       flexDirection: 'row',
       justifyContent: 'space-between',
       padding: 10,
-      backgroundColor: theme['color-info-transparent-400'],
     },
     title: {
       fontSize: 15,
       fontWeight: 'bold',
     },
+    date: {
+      fontSize: 13,
+    },
   });
 
   return (
     <View style={styles.headerContainer}>
-      <Text>{date}</Text>
+      <Text style={styles.date}>{format(new Date(date), 'PPP')}</Text>
       <Text style={styles.title} numberOfLines={1}>
         {name}
       </Text>
@@ -64,7 +65,7 @@ const PostCard = ({post}) => {
     },
   });
 
-  console.log(post);
+  console.log(new Date());
 
   return (
     <Card
