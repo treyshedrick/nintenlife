@@ -26,6 +26,32 @@ const Header = ({title}) => {
   );
 };
 
+const Footer = ({name, date}) => {
+  const theme = useTheme();
+
+  const styles = StyleSheet.create({
+    headerContainer: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      padding: 10,
+      backgroundColor: theme['color-info-transparent-400'],
+    },
+    title: {
+      fontSize: 15,
+      fontWeight: 'bold',
+    },
+  });
+
+  return (
+    <View style={styles.headerContainer}>
+      <Text>{date}</Text>
+      <Text style={styles.title} numberOfLines={1}>
+        {name}
+      </Text>
+    </View>
+  );
+};
+
 const PostCard = ({post}) => {
   const styles = StyleSheet.create({
     card: {
@@ -38,9 +64,14 @@ const PostCard = ({post}) => {
     },
   });
 
+  console.log(post);
+
   return (
-    <Card style={styles.card} header={<Header title={post.title} />}>
-      <Text>{post.summary}</Text>
+    <Card
+      style={styles.card}
+      header={<Header title={post.name} />}
+      footer={<Footer name={post.user} date={post.updatedAt} />}>
+      <Text>{post.description}</Text>
     </Card>
   );
 };

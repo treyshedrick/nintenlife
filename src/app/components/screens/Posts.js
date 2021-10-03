@@ -62,14 +62,7 @@ export const PostsScreen = ({navigation}) => {
             contentContainerStyle={styles.scrollContainer}
             keyExtractor={item => item.id}
             vertical
-            renderItem={({item}) => (
-              <PostCard
-                post={{
-                  title: item.name,
-                  summary: item.description,
-                }}
-              />
-            )}
+            renderItem={({item}) => <PostCard post={item} />}
             initialNumToRender={2}
             windowSize={2}
             refreshControl={
