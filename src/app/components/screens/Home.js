@@ -73,8 +73,6 @@ export const HomeScreen = ({navigation}) => {
 
   return (
     <Layout style={pageStyles.fullPage}>
-      <TopNavigation title="NintenLife" alignment="center" />
-      <Divider />
       <Layout style={styles.mainArticlesContainer}>
         <Layout style={styles.imgContainer}>
           {isLoaded && (

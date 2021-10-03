@@ -13,8 +13,6 @@ const Profile = ({user, actions}) => {
 
   return (
     <Layout style={{height: '100%'}}>
-      <TopNavigation title="Profile" alignment="center" />
-      <Divider />
       <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         <Button onPress={() => signOut()}>Sign Out</Button>
       </Layout>

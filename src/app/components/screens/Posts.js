@@ -53,8 +53,6 @@ export const PostsScreen = ({navigation}) => {
 
   return (
     <Layout style={pageStyles.fullPage}>
-      <TopNavigation title="Posts" alignment="center" />
-      <Divider />
       <Layout style={styles.contentContainer}>
         {isLoaded && (
           <FlatList
