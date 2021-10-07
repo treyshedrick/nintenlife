@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useCallback} from 'react';
-import {Divider, Layout, TopNavigation, Button} from '@ui-kitten/components';
+import {Layout, Button} from '@ui-kitten/components';
 import {StyleSheet, FlatList, RefreshControl} from 'react-native';
 import {EditIcon} from '~shared/icons';
 import pageStyles from '~shared/styles/page';

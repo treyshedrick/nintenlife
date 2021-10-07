@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Divider, Layout, TopNavigation} from '@ui-kitten/components';
+import {Button, Layout} from '@ui-kitten/components';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as UserActions from '~redux/actions/user';

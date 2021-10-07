@@ -1,12 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {
-  Text,
-  Divider,
-  Layout,
-  TopNavigation,
-  Button,
-  useTheme,
-} from '@ui-kitten/components';
+import {Text, Layout, Button, useTheme} from '@ui-kitten/components';
 import {ImageBackground, StyleSheet, FlatList, Linking} from 'react-native';
 import pageStyles from '~shared/styles/page';
 import {getNintendoNews} from '~services/newsApi';
