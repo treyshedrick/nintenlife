@@ -11,6 +11,7 @@ import {Provider} from 'react-redux';
 import configureStore from '~redux/configureStore';
 import {default as theme} from '~helpers/theme.json';
 import AppNavigator from '~helpers/navigation';
+import pageStyles from '~shared/styles/page';
 
 Amplify.configure({
   ...config,
@@ -34,8 +35,8 @@ const App = () => {
     <Provider store={store}>
       <IconRegistry icons={EvaIconsPack} />
       <ApplicationProvider {...eva} theme={{...eva[colorScheme], ...theme}}>
-        <Layout style={{height: '100%'}}>
-          <SafeAreaView style={{flex: 1}}>
+        <Layout style={pageStyles.fullPage}>
+          <SafeAreaView style={pageStyles.flex}>
             <AppNavigator />
           </SafeAreaView>
         </Layout>

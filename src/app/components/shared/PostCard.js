@@ -65,8 +65,6 @@ const PostCard = ({post}) => {
     },
   });
 
-  console.log(new Date());
-
   return (
     <Card
       style={styles.card}
