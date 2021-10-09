@@ -2,14 +2,30 @@ import React, {useState} from 'react';
 import {View} from 'react-native';
 import {Layout, Input, Text, Button} from '@ui-kitten/components';
 import * as UserActions from '~redux/actions/user';
-import styles from '~shared/styles/form';
+import sharedStyles from '~shared/styles/form';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {TouchableWithoutFeedback, Keyboard, Image} from 'react-native';
+import {
+  TouchableWithoutFeedback,
+  Keyboard,
+  Image,
+  StyleSheet,
+} from 'react-native';
 import {EyeIcon, LoadingIndicator} from '~shared/icons';
 import logo from '~assets/logo.png';
 
 const Login = ({navigation, user, actions}) => {
+  const styles = StyleSheet.create({
+    errorBox: {
+      height: 15,
+    },
+    errorText: {
+      fontSize: 12,
+      color: 'red',
+      textAlign: 'center',
+    },
+  });
+
   const [usernameValue, setUsernameValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
   const [secureTextEntry, setSecureTextEntry] = useState(true);
@@ -31,32 +47,42 @@ const Login = ({navigation, user, actions}) => {
     </TouchableWithoutFeedback>
   );
 
-  const LoggingIn = user.userState === 'USER_LOGIN_REQUEST';
+  const loggingIn = user.userState === 'USER_LOGIN_REQUEST';
+  const logInFail = user.userState === 'USER_LOGIN_FAIL';
+
+  console.log(logInFail);
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <Layout style={styles.layout}>
-        <Image source={logo} style={styles.centerLogo} />
+      <Layout style={sharedStyles.layout}>
+        <Image source={logo} style={sharedStyles.centerLogo} />
+        <View style={styles.errorBox}>
+          {logInFail && (
+            <Text style={styles.errorText}>
+              Log in attempt failed. Please try again.
+            </Text>
+          )}
+        </View>
         <Input
-          style={styles.input}
+          style={sharedStyles.input}
           value={usernameValue}
           onChangeText={nextValue => setUsernameValue(nextValue)}
           label={evaProps => <Text {...evaProps}>Username</Text>}
         />
         <Input
-          style={styles.input}
+          style={sharedStyles.input}
           value={passwordValue}
           secureTextEntry={secureTextEntry}
           accessoryRight={ShowPasswordIcon}
           onChangeText={nextValue => setPasswordValue(nextValue)}
           label={evaProps => <Text {...evaProps}>Password</Text>}
         />
-        <View style={styles.btnCol}>
+        <View style={sharedStyles.btnCol}>
           <Button
-            style={styles.btn}
-            disabled={LoggingIn ? true : false}
+            style={sharedStyles.btn}
+            disabled={loggingIn ? true : false}
             onPress={() => login(usernameValue, passwordValue)}>
-            {!LoggingIn ? 'Login' : <LoadingIndicator />}
+            {!loggingIn ? 'Login' : <LoadingIndicator />}
           </Button>
           <Button appearance="ghost" onPress={navigateSignUp}>
             Need an account? Sign Up
