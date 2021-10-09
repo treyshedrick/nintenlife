@@ -50,8 +50,6 @@ const Login = ({navigation, user, actions}) => {
   const loggingIn = user.userState === 'USER_LOGIN_REQUEST';
   const logInFail = user.userState === 'USER_LOGIN_FAIL';
 
-  console.log(logInFail);
-
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <Layout style={sharedStyles.layout}>
