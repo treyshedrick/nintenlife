@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Layout, Input, Text, Button} from '@ui-kitten/components';
-import {TouchableWithoutFeedback} from 'react-native';
+import {TouchableWithoutFeedback, View, StyleSheet} from 'react-native';
 
 import styles from '~shared/styles/form';
 import {EyeIcon} from '~shared/icons';
@@ -8,7 +8,19 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as UserActions from '~redux/actions/user';
 
-const Signup = ({navigation, actions}) => {
+const Signup = ({navigation, actions, user}) => {
+  const style = StyleSheet.create({
+    errorBox: {
+      height: 20,
+      marginTop: 10,
+    },
+    errorText: {
+      fontSize: 12,
+      color: 'red',
+      textAlign: 'center',
+    },
+  });
+
   const [usernameValue, setUsernameValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
   const [emailAddressValue, seEmailAddressValue] = useState('');
@@ -29,11 +41,16 @@ const Signup = ({navigation, actions}) => {
     </TouchableWithoutFeedback>
   );
 
+  const userError = user.error;
+
   return (
     <Layout style={styles.layout}>
       <Text category="h1" style={styles.center}>
         Sign Up!
       </Text>
+      <View style={style.errorBox}>
+        {userError && <Text style={style.errorText}>{userError}.</Text>}
+      </View>
       <Input
         style={styles.input}
         value={emailAddressValue}
@@ -66,9 +83,13 @@ const Signup = ({navigation, actions}) => {
   );
 };
 
+const mapStateToProps = state => ({
+  user: state.user,
+});
+
 const ActionCreators = Object.assign({}, UserActions);
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(ActionCreators, dispatch),
 });
 
-export default connect(null, mapDispatchToProps)(Signup);
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);

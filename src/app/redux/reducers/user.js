@@ -26,11 +26,12 @@ const user = (state = initialState, action) => {
         ...state,
         userState: action.type,
       };
+    case U.USER_SIGNUP_FAIL:
     case U.USER_LOGIN_FAIL:
       return {
         ...state,
         userState: action.type,
-        error: action.error,
+        error: action.error.message,
       };
     default:
       return state;
