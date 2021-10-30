@@ -6,8 +6,6 @@ Mobile application for Nintendo enthusiasts that shows news and allows users to 
 <img src="https://i.ibb.co/PGzP4GV/Screen-Shot-2021-10-09-at-10-47-10-AM.png" alt="Screen-Shot-2021-10-09-at-10-47-10-AM" border="0">
  </p>
 
-###### Currently working on this project
-
 Technologies Used
 - React Native
 - UI Kitten
